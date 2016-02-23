@@ -103,8 +103,9 @@
     server_url: "{{ zabbix_url }}"
     login_user: "{{ zabbix_api_user }}"
     login_password: "{{ zabbix_api_pass }}"
-    host_group: "{{ zabbix_host_groups }}"
+    host_group: "{{ item }}"
     state: "{{ zabbix_create_hostgroup }}"
+  with_items: zabbix_host_groups
   when: zabbix_api_use
   tags:
     - api
